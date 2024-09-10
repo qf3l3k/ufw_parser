@@ -2,11 +2,6 @@ import os
 import fnmatch
 
 
-def display_params(cmdargs):
-    for arg in vars(cmdargs):
-        print(arg, ' - ', getattr(cmdargs, arg))
-
-
 def find_files(directory, pattern):
     """Search recursively for files matching a given pattern.
 

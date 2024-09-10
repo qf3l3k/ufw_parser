@@ -1,4 +1,5 @@
 import logging
+import os
 import pandas as pd
 
 
@@ -7,6 +8,8 @@ logger = logging.getLogger("ufw_parser_log")
 
 def export_to_excel(dataframe, folder):
     try:
+        if not os.path.exists(folder):
+            os.makedirs(folder)
         df = pd.DataFrame(dataframe)
         columns = list(df.columns)
         df = df[columns]
@@ -18,6 +21,8 @@ def export_to_excel(dataframe, folder):
 
 def export_to_csv(dataframe, folder):
     try:
+        if not os.path.exists(folder):
+            os.makedirs(folder)
         df = pd.DataFrame(dataframe)
         columns = list(df.columns)
         df = df[columns]
@@ -34,7 +39,7 @@ def export_to_screen(dataframe):
     print(df)
 
 
-def export_rules(rules, dest="screen", dest_folder="~/.ufw_parser/logs/"):
+def export_rules(rules, dest="screen", dest_folder="~/.ufw_parser/"):
     if dest == "screen":
         export_to_screen(rules)
     elif dest == "excel":
