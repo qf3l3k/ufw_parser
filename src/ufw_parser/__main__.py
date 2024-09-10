@@ -15,7 +15,7 @@ def main():
     cmdargs = command_line_parser()
     display_params(cmdargs)
     print(cmdargs.output)
-    initialize_loggers(log_directory='./', log_filename='ufw_parser.log', log_level=logging.DEBUG)
+    initialize_loggers(cmdargs.log)
     logger.info("Command line arguments: %s", cmdargs)
     config = load_config(cmdargs.config)
     data_processor = process_data(config)
