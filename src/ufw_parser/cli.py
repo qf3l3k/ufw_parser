@@ -24,6 +24,12 @@ def command_line_parser():
                         dest='output',
                         default='screen',
                         help='Output format')
+    parser.add_argument('-of', '--output_folder',
+                        choices=['screen', 'csv', 'excel'],
+                        action='store',
+                        dest='output_folder',
+                        default='~/.ufw_parser/logs/',
+                        help='Output file destination.')
     parser.add_argument('-v', '--version',
                         action='version',
                         version='1.0')
