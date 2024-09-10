@@ -1,0 +1,58 @@
+Hostname,Protocol,Port,Source,Action,Comment
+ovh-host-01.qf3l3k.cloud,tcp,22,0.0.0.0/0,ACCEPT,Rate limit for openssh server
+ovh-host-01.qf3l3k.cloud,tcp,22,0.0.0.0/0,ufw,Rate limit for openssh server
+ovh-host-01.qf3l3k.cloud,tcp,22,0.0.0.0/0,ufw,Rate limit for openssh server
+ovh-host-01.qf3l3k.cloud,tcp,9100,109.233.95.195,ACCEPT,Prometheus Node Exporter
+ovh-host-01.qf3l3k.cloud,tcp,26676,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Carbon)
+ovh-host-01.qf3l3k.cloud,tcp,26656,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Nomic)
+ovh-host-01.qf3l3k.cloud,tcp,26680,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Carbon)
+ovh-host-01.qf3l3k.cloud,tcp,26660,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Nomic)
+ovh-host-02.qf3l3k.cloud,tcp,9100,109.233.95.195,ACCEPT,Prometheus Node Exporter
+ovh-host-02.qf3l3k.cloud,tcp,22,0.0.0.0/0,ACCEPT,Rate limit for openssh server
+ovh-host-02.qf3l3k.cloud,tcp,22,0.0.0.0/0,ufw,Rate limit for openssh server
+ovh-host-02.qf3l3k.cloud,tcp,22,0.0.0.0/0,ufw,Rate limit for openssh server
+ovh-host-02.qf3l3k.cloud,tcp,26680,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Provenance)
+ovh-host-02.qf3l3k.cloud,tcp,26671,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Sifchain)
+ovh-host-02.qf3l3k.cloud,tcp,26700,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Unification)
+ovh-host-02.qf3l3k.cloud,tcp,26690,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Kava)
+ovh-host-02.qf3l3k.cloud,tcp,26710,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Acrechain)
+ovh-host-02.qf3l3k.cloud,tcp,26686,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Kava)
+ovh-host-02.qf3l3k.cloud,tcp,26667,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Sifchain)
+ovh-host-02.qf3l3k.cloud,tcp,26676,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Provenance)
+ovh-host-02.qf3l3k.cloud,tcp,26696,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Unification)
+ovh-host-02.qf3l3k.cloud,tcp,26706,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Acrechain)
+ovh-host-03.qf3l3k.cloud,tcp,22,0.0.0.0/0,ACCEPT,Rate limit for openssh server
+ovh-host-03.qf3l3k.cloud,tcp,22,0.0.0.0/0,ufw,Rate limit for openssh server
+ovh-host-03.qf3l3k.cloud,tcp,22,0.0.0.0/0,ufw,Rate limit for openssh server
+ovh-host-03.qf3l3k.cloud,tcp,9100,109.233.95.195,ACCEPT,Prometheus Node Exporter
+ovh-host-03.qf3l3k.cloud,tcp,26671,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Sentinel)
+ovh-host-03.qf3l3k.cloud,tcp,26700,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Konstellation)
+ovh-host-03.qf3l3k.cloud,tcp,26667,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Sentinel)
+ovh-host-03.qf3l3k.cloud,tcp,26676,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Lum Network)
+ovh-host-03.qf3l3k.cloud,tcp,26696,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Konstellation)
+ovh-host-03.qf3l3k.cloud,tcp,26690,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Lum Network)
+ovh-host-03.qf3l3k.cloud,tcp,26680,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Decentr)
+ovh-host-03.qf3l3k.cloud,tcp,26710,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Migaloo)
+ovh-host-03.qf3l3k.cloud,tcp,26706,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Migaloo)
+ovh-host-04.qf3l3k.cloud,tcp,22,0.0.0.0/0,ACCEPT,Rate limit for openssh server
+ovh-host-04.qf3l3k.cloud,tcp,22,0.0.0.0/0,ufw,Rate limit for openssh server
+ovh-host-04.qf3l3k.cloud,tcp,22,0.0.0.0/0,ufw,Rate limit for openssh server
+ovh-host-04.qf3l3k.cloud,tcp,26656,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P
+ovh-host-04.qf3l3k.cloud,tcp,9100,109.233.95.195,ACCEPT,Prometheus Node Exporter
+ovh-host-04.qf3l3k.cloud,tcp,26671,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Beezee)
+ovh-host-04.qf3l3k.cloud,tcp,26680,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (MEME)
+ovh-host-04.qf3l3k.cloud,tcp,26690,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Desmos)
+ovh-host-04.qf3l3k.cloud,tcp,26700,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (LumenX)
+ovh-host-04.qf3l3k.cloud,tcp,26710,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Vidulum)
+ovh-host-04.qf3l3k.cloud,tcp,26696,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (LumenX)
+ovh-host-04.qf3l3k.cloud,tcp,26716,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Rizon)
+ovh-host-04.qf3l3k.cloud,tcp,26667,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Beezee)
+ovh-host-04.qf3l3k.cloud,tcp,26676,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (MEME)
+ovh-host-04.qf3l3k.cloud,tcp,26686,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Desmos)
+ovh-host-04.qf3l3k.cloud,tcp,26706,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Vidulum)
+ovh-host-04.qf3l3k.cloud,tcp,26720,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (Rizon)
+ovh-host-04.qf3l3k.cloud,tcp,26730,109.233.95.195,ACCEPT,Prometheus Tendermint Exporter (e-Money)
+ovh-host-04.qf3l3k.cloud,tcp,26726,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (e-Money)
+ovh-host-04.qf3l3k.cloud,tcp,80,0.0.0.0/0,ACCEPT,Caddy Web Server
+ovh-host-04.qf3l3k.cloud,tcp,443,0.0.0.0/0,ACCEPT,Caddy Web Server
+ovh-host-04.qf3l3k.cloud,tcp,26746,0.0.0.0/0,ACCEPT,Cosmos SDK/Tendermint P2P (Penumbra)
