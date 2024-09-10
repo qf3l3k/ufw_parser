@@ -49,6 +49,15 @@ def get_rules(server_data):
             logger.info(f'Processing {file}')
             parsed_rules = parse_ufw_rules_file(hostname, file)
             server_rules.extend(parsed_rules)
+    elif processing == 'remote':
+        if server_data.get('use_ssh_agent'):
+            logger.info(f'Processing {processing} configuration for {hostname} using ssh agent keys.')
+        # Use SSH agent for authentication
+        else:
+            ssh_user = server_data.get('ssh_user')
+            ssh_key = server_data.get('ssh_key')
+            logger.info(
+                f'Processing {processing} configuration for {hostname} using ssh credentials: {ssh_user} - {ssh_key}.')
     return server_rules
 
 
