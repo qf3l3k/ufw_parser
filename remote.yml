@@ -1,0 +1,2 @@
+servers:
+  con-node-01: {hostname: "10.131.1.164", processing: "remote", use_ssh_agent: false, ssh_user: "qf3l3k", ssh_pass: "P@ssw0rd99", rule_path: "/etc/ufw"}

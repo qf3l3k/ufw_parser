@@ -17,7 +17,7 @@ def main():
     logger.info("Command line arguments: %s", cmdargs)
     config = load_config(cmdargs.config)
     data_processor = process_data(config)
-    export_rules(data_processor, cmdargs.output)
+    export_rules(data_processor, cmdargs.output, cmdargs.output_folder)
 
 
 if __name__ == '__main__':

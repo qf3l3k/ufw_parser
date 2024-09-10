@@ -25,7 +25,6 @@ def command_line_parser():
                         default='screen',
                         help='Output format')
     parser.add_argument('-of', '--output_folder',
-                        choices=['screen', 'csv', 'excel'],
                         action='store',
                         dest='output_folder',
                         default='~/.ufw_parser/',
