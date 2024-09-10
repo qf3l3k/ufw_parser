@@ -15,9 +15,9 @@ def command_line_parser():
                         help='Path to the configuration file.')
     parser.add_argument('-l', '--log',
                         action='store',
-                        dest='logs',
-                        default='~/.ufw_parser/logs/',
-                        help='Directory to store log files. Default: ~/.ufw_parser/logs/')
+                        dest='log',
+                        default='~/.ufw_parser/',
+                        help='Directory to store log files. Default: ~/.ufw_parser/')
     parser.add_argument('-o', '--output',
                         choices=['screen', 'csv', 'excel'],
                         action='store',
@@ -28,7 +28,7 @@ def command_line_parser():
                         choices=['screen', 'csv', 'excel'],
                         action='store',
                         dest='output_folder',
-                        default='~/.ufw_parser/logs/',
+                        default='~/.ufw_parser/',
                         help='Output file destination.')
     parser.add_argument('-v', '--version',
                         action='version',
