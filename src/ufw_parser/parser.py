@@ -18,7 +18,7 @@ def rule_parser(hostname, input_data):
     comment = ''
     logger.info(f'Processing rules for {hostname}.')
     for line in input_data:
-        logger.info(f'Processing line {line}')
+        logger.debug(f'Processing line {line}')
         if line.startswith('### tuple ###'):
             comment_match = re.search(r'comment=([0-9a-f]+)', line)
             if comment_match:
