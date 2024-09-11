@@ -1,7 +1,8 @@
-import datetime
 import logging
 import os
 import pandas as pd
+
+from datetime import datetime
 
 
 logger = logging.getLogger("ufw_parser_log")
