@@ -57,9 +57,13 @@ def get_rules(server_data):
             server_rules.extend(parsed_rules)
     elif processing == 'remote':
         if server_data.get('use_ssh_agent') == True:
+            ssh_user = server_data.get('ssh_user')
             logger.info(f'Processing {processing} configuration for {hostname} using ssh agent keys.')
+            retrieved_rules = read_remote_files_sudo(hostname, ssh_user, rule_path)
+            parsed_rules = rule_parser(hostname, retrieved_rules)
+            server_rules.extend(parsed_rules)
         # Use SSH agent for authentication
-        else:
+        elif server_data.get('use_ssh_agent') == False:
             ssh_user = server_data.get('ssh_user')
             ssh_pass = server_data.get('ssh_pass')
             logger.info(
