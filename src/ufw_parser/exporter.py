@@ -1,3 +1,4 @@
+import datetime
 import logging
 import os
 import pandas as pd
@@ -7,26 +8,28 @@ logger = logging.getLogger("ufw_parser_log")
 
 
 def export_to_excel(dataframe, folder):
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     try:
         if not os.path.exists(folder):
             os.makedirs(folder)
         df = pd.DataFrame(dataframe)
         columns = list(df.columns)
         df = df[columns]
-        df.to_excel(f'{folder}/ufw_rules.xlsx', index=False)
+        df.to_excel(f'{folder}/ufw_rules_{timestamp}.xlsx', index=False)
         logger.info("Data exported to ufw_rules.xlsx successfully.")
     except Exception as e:
         logger.error("Failed to export data to Excel: " + str(e))
 
 
 def export_to_csv(dataframe, folder):
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     try:
         if not os.path.exists(folder):
             os.makedirs(folder)
         df = pd.DataFrame(dataframe)
         columns = list(df.columns)
         df = df[columns]
-        df.to_csv(f'{folder}/ufw_rules.csv', index=False)
+        df.to_csv(f'{folder}/ufw_rules_{timestamp}.csv', index=False)
         logger.info("Data exported to ufw_rules.csv successfully.")
     except Exception as e:
         logger.error("Failed to export data to CSV: " + str(e))
