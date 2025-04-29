@@ -1,16 +1,18 @@
 stages:
   - mirror
 
+variables:
+  GIT_DEPTH: 0  # Important! Fetch full repo history so GitHub accepts the push
+
 mirror_to_github:
   stage: mirror
   script:
-    - git config --global user.email "ci@example.com"
+    - git config --global user.email "qf3l3k@gmail.com"
     - git config --global user.name "GitLab CI"
     - |
       if ! git remote | grep -q github; then
         git remote add github https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${GITHUB_USERNAME}/${GITHUB_REPO}.git
       fi
-    - git fetch origin master
     - git checkout master
     - git push github master:main
   rules:
