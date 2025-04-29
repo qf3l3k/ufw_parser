@@ -7,7 +7,7 @@ from datetime import datetime
 logger = logging.getLogger("ufw_parser_log")
 
 class RuleExporter:
-    def __init__(self, dest_folder="~/.ufw_parser/"):
+    def __init__(self, dest_folder="~/.config/ufw_parser/"):
         self.dest_folder = os.path.expanduser(dest_folder)
         os.makedirs(self.dest_folder, exist_ok=True)
         self.timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -72,7 +72,7 @@ class RuleExporter:
             filepath = os.path.join(host_folder, "ufw_rules.yml")
             try:
                 with open(filepath, 'w') as file:
-                    yaml.safe_dump(output, file, default_flow_style=False, sort_keys=False)
+                    yaml.safe_dump(output, file, default_flow_style=True, sort_keys=False)
                 logger.info(f"Exported Ansible host_vars YAML for {hostname} to {filepath}")
             except Exception as e:
                 logger.error(f"Failed to export Ansible YAML for {hostname}: {e}")

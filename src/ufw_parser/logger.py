@@ -4,7 +4,7 @@ import os
 from logging.handlers import RotatingFileHandler
 
 
-def initialize_loggers(log_directory='~/.ufw_parser/', log_filename='ufw_parser.log', log_level=logging.DEBUG):
+def initialize_loggers(log_directory='~/.config/ufw_parser/', log_filename='ufw_parser.log', log_level=logging.DEBUG):
     """
     Set up and configure two loggers for the application: console and file.
     Logs will be stored in the specified log_directory with the filename log_filename.

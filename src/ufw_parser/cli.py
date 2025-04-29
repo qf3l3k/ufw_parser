@@ -11,13 +11,13 @@ def command_line_parser():
                         required=True,
                         action='store',
                         dest='config',
-                        default='~/.ufw_parser/hosts.yml',
+                        default='~/.config/ufw_parser/hosts.yml',
                         help='Path to the configuration file.')
     parser.add_argument('-l', '--log',
                         action='store',
                         dest='log',
-                        default='~/.ufw_parser/',
-                        help='Directory to store log files. Default: ~/.ufw_parser/')
+                        default='~/.config/ufw_parser/',
+                        help='Directory to store log files. Default: ~/.config/ufw_parser/')
     parser.add_argument('-o', '--output',
                         choices=['screen', 'csv', 'excel', 'ansible_yaml'],
                         action='store',
@@ -27,7 +27,7 @@ def command_line_parser():
     parser.add_argument('-of', '--output_folder',
                         action='store',
                         dest='output_folder',
-                        default='~/.ufw_parser/',
+                        default='~/.config/ufw_parser/',
                         help='Output file destination.')
     parser.add_argument('-d', '--debug',
                         action='store_true',
