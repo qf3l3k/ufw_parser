@@ -76,7 +76,7 @@ class RuleExporter:
                     file.write("ufw_rules:\n")
                     for rule in ansible_rules:
                         json_line = json.dumps(rule, separators=(", ", ": "))
-                        file.write(f"  - {json_line}\n")
+                        file.write(f"  - { json_line }\n")
                 logger.info(f"Exported Ansible host_vars YAML for {hostname} to {filepath}")
             except Exception as e:
                 logger.error(f"Failed to export Ansible YAML for {hostname}: {e}")
