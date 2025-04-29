@@ -72,7 +72,10 @@ class RuleExporter:
             filepath = os.path.join(host_folder, "ufw_rules.yml")
             try:
                 with open(filepath, 'w') as file:
-                    yaml.safe_dump(output, file, default_flow_style=True, sort_keys=False)
+                    file.write("ufw_rules:\n")
+                    for rule in ansible_rules:
+                        inline = yaml.safe_dump([rule], default_flow_style=True, sort_keys=False).strip()
+                        file.write(f"  - {inline[2:]}\n")  # remove the list prefix "- "
                 logger.info(f"Exported Ansible host_vars YAML for {hostname} to {filepath}")
             except Exception as e:
                 logger.error(f"Failed to export Ansible YAML for {hostname}: {e}")
