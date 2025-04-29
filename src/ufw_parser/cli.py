@@ -19,7 +19,7 @@ def command_line_parser():
                         default='~/.ufw_parser/',
                         help='Directory to store log files. Default: ~/.ufw_parser/')
     parser.add_argument('-o', '--output',
-                        choices=['screen', 'csv', 'excel'],
+                        choices=['screen', 'csv', 'excel', 'ansible_yaml'],
                         action='store',
                         dest='output',
                         default='screen',
@@ -29,6 +29,9 @@ def command_line_parser():
                         dest='output_folder',
                         default='~/.ufw_parser/',
                         help='Output file destination.')
+    parser.add_argument('-d', '--debug',
+                        action='store_true',
+                        help='Enable debug output (set log level to DEBUG)')
     parser.add_argument('-v', '--version',
                         action='version',
                         version='1.0')

@@ -21,6 +21,7 @@ def find_files(directory, pattern):
     for root, dirs, files in os.walk(directory):
         for filename in fnmatch.filter(files, pattern):
             matches.append(os.path.join(root, filename))
+    logger.debug(f"Files found: {matches}")
     return matches
 
 
