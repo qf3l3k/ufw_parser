@@ -5,6 +5,6 @@ mirror_to_github:
   stage: mirror
   script:
     - git remote add github https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${GITHUB_USERNAME}/${GITHUB_REPO}.git
-    - git push github main
+    - git push github master:main
   rules:
     - if: '$CI_COMMIT_BRANCH == "master"'
