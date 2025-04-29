@@ -1,3 +1,6 @@
+stages:
+  - mirror
+
 mirror_to_github:
   stage: mirror
   script:
