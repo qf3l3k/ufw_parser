@@ -32,7 +32,7 @@ It supports various output formats such as:
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/yourusername/ufw_parser.git
+git clone https://github.com/qf3l3k/ufw_parser.git
 cd ufw_parser
 pip install -e .
 ```
@@ -75,13 +75,23 @@ servers:
     use_ssh_agent: true
 ```
 
+## Support
+
+If you encounter any issues or have feature requests, please file them on the [GitHub issues page](https://github.com/qf3l3k/ufw_parser/issues).
 
 
----
 
-## 📜 License
+If you like this plugin you can support it's development and ...
 
-MIT License. See `LICENSE` for details.
+<a href="https://www.buymeacoffee.com/qf3l3k" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style=" height: 60px !important;width: 217px !important;" ></a>
+
+--- 
+
+## License
+
+MIT
+
+
 
 ---
 
