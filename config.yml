@@ -15,4 +15,3 @@ servers:
   ovh-host-10: {hostname: "ovh-host-10.qf3l3k.cloud", processing: "local", rule_path: "/home/qf3l3k/backup/202504172052/ovh-host-10.qf3l3k.cloud/etc/ufw"}
   ovh-host-11: {hostname: "ovh-host-11.qf3l3k.cloud", processing: "local", rule_path: "/home/qf3l3k/backup/202504172052/ovh-host-11.qf3l3k.cloud/etc/ufw"}
   ovh-host-12: {hostname: "ovh-host-12.qf3l3k.cloud", processing: "local", rule_path: "/home/qf3l3k/backup/202504172052/ovh-host-12.qf3l3k.cloud/etc/ufw"}
-
