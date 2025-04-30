@@ -2,19 +2,35 @@ stages:
   - mirror
 
 variables:
-  GIT_DEPTH: 0  # Important! Fetch full repo history so GitHub accepts the push
+  GIT_DEPTH: 0
 
-mirror_to_github:
+mirror_clean_publish:
   stage: mirror
   script:
     - git config --global user.email "qf3l3k@gmail.com"
     - git config --global user.name "GitLab CI"
+
+    # Add GitHub as a remote if not present
     - |
       if ! git remote | grep -q github; then
         git remote add github https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/${GITHUB_USERNAME}/${GITHUB_REPO}.git
       fi
+
+    # Checkout master and pull latest
     - git checkout master
     - git pull origin master
-    - git push github master:main
+
+    # Create clean branch
+    - git checkout -b publish-temp
+
+    # Remove private/internal files (add more as needed)
+    - rm -f .gitlab-ci.yml
+    - rm -rf internal_docs/ secrets/ ci-scripts/
+
+    # Commit the changes to temp branch
+    - git commit -am "Clean publish branch for GitHub" || echo "Nothing to commit"
+
+    # Force push temp branch to GitHub as main
+    - git push -f github publish-temp:main
   rules:
     - if: '$CI_COMMIT_BRANCH == "master"'
