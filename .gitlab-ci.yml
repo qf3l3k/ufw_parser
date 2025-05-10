@@ -44,4 +44,5 @@ mirror_clean_publish:
     - git push --tags github
     - git branch -D "$TEMP_BRANCH"
   rules:
-    - if: '$CI_COMMIT_BRANCH == "$PUBLISH_BRANCH"'
+    - if: "$CI_COMMIT_BRANCH == $PUBLISH_BRANCH"
+      when: always
