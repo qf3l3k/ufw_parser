@@ -79,7 +79,6 @@ servers:
 
 If you encounter any issues or have feature requests, please file them on the [GitHub issues page](https://github.com/qf3l3k/ufw_parser/issues).
 
-
 If you like this tool you can support it's development and ...
 
 <a href="https://www.buymeacoffee.com/qf3l3k" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style=" height: 60px !important;width: 217px !important;" ></a>
