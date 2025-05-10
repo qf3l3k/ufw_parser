@@ -22,6 +22,9 @@ mirror_clean_publish:
     - git checkout "$PUBLISH_BRANCH"
     - git pull origin "$PUBLISH_BRANCH"
 
+    # Remove any old temp branch so we can recreate it
+    - git branch -D "$TEMP_BRANCH" || true
+
     # Create clean branch
     - git checkout -b "$TEMP_BRANCH"
 
