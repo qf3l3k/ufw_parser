@@ -45,6 +45,7 @@ mirror_clean_publish:
     # Force push temp branch to GitHub as main
     - git push -f github "$TEMP_BRANCH:main"
     - git push --tags github
+    - git checkout "$PUBLISH_BRANCH"
     - git branch -D "$TEMP_BRANCH"
   rules:
     - if: "$CI_COMMIT_BRANCH == $PUBLISH_BRANCH"
