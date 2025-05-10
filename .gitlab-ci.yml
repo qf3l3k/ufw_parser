@@ -3,6 +3,8 @@ stages:
 
 variables:
   GIT_DEPTH: 0
+  PUBLISH_BRANCH: publish
+  TEMP_BRANCH: publish-temp
 
 mirror_clean_publish:
   stage: mirror
@@ -17,20 +19,29 @@ mirror_clean_publish:
       fi
 
     # Checkout master and pull latest
-    - git checkout master
-    - git pull origin master
+    - git checkout "$PUBLISH_BRANCH"
+    - git pull origin "$PUBLISH_BRANCH"
 
     # Create clean branch
-    - git checkout -b publish-temp
+    - git checkout -b "$TEMP_BRANCH"
 
     # Remove private/internal files (add more as needed)
-    - rm -f .gitlab-ci.yml
-    - rm -rf internal_docs/ secrets/ ci-scripts/
+    - |
+      for path in .gitlab-ci.yml internal_docs/ secrets/ ci-scripts/; do
+        rm -rf "$path" || true
+      done
 
-    # Commit the changes to temp branch
-    - git commit -am "Clean publish branch for GitHub" || echo "Nothing to commit"
+    # Commit only if there are changes
+    - |
+      if [ -n "$(git status --porcelain)" ]; then
+        git commit -am "Clean publish branch for GitHub"
+      else
+        echo "Nothing to commit, skipping"
+      fi
 
     # Force push temp branch to GitHub as main
-    - git push -f github publish-temp:main
+    - git push -f github "$TEMP_BRANCH:main"
+    - git push --tags github
+    - git branch -D "$TEMP_BRANCH"
   rules:
-    - if: '$CI_COMMIT_BRANCH == "master"'
+    - if: '$CI_COMMIT_BRANCH == "$PUBLISH_BRANCH"'
