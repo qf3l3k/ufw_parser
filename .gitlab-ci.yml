@@ -2,52 +2,64 @@ stages:
   - mirror
 
 variables:
-  GIT_DEPTH: 0
-  GITHUB_BRANCH: main
-  PUBLISH_BRANCH: publish
-  TEMP_BRANCH: publish-temp
+  GIT_DEPTH: "0"
+  GIT_STRATEGY: fetch
+  GITHUB_BRANCH: "main"
+  PUBLISH_BRANCH: "publish"
+  TEMP_BRANCH: "publish-temp"
 
 mirror_clean_publish:
   stage: mirror
+  resource_group: github-mirror   # prevents concurrent pushes racing
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+      - api_failure
   script:
+    - set -euo pipefail
+
     - git config --global user.email "qf3l3k@gmail.com"
     - git config --global user.name "GitLab CI"
 
-    # Add GitHub as a remote if not present
-    - |
-      if ! git remote | grep -q github; then
-        git remote add github https://${GITHUB_USERNAME}:${GITHUB_OWNER_TOKEN}@github.com/${GITHUB_OWNER}/${CI_PROJECT_NAME}.git
-      fi
+    # Always start from clean working tree (important with shell executor)
+    - git reset --hard
+    - git clean -fdx
 
-    # Checkout master and pull latest
-    - git checkout "$PUBLISH_BRANCH"
-    - git pull origin "$PUBLISH_BRANCH"
+    # Add GitHub remote without credentials (safer)
+    - git remote remove github || true
+    - git remote add github "https://github.com/${GITHUB_OWNER}/${CI_PROJECT_NAME}.git"
 
-    # Remove any old temp branch so we can recreate it
-    - git branch -D "$TEMP_BRANCH" || true
+    # Provide credentials safely
+    - git config --global credential.helper store
+    - printf "https://x-access-token:%s@github.com\n" "$GITHUB_TOKEN" > ~/.git-credentials
 
-    # Create clean branch
-    - git checkout -b "$TEMP_BRANCH"
+    # Create temp branch from publish branch (no dependency on local branch existing)
+    - git fetch origin "$PUBLISH_BRANCH"
+    - git checkout -B "$TEMP_BRANCH" "origin/$PUBLISH_BRANCH"
 
-    # Remove private/internal files (add more as needed)
+    # Remove internal/private files
     - |
       for path in .gitlab-ci.yml internal_docs/ secrets/ ci-scripts/ config.yml config.yaml .env; do
         rm -rf "$path" || true
       done
 
-    # Commit only if there are changes
+    # Commit only if changes exist
     - |
       if [ -n "$(git status --porcelain)" ]; then
-        git commit -am "Clean publish branch for GitHub"
+        git add -A
+        git commit -m "Clean publish branch for GitHub"
       else
-        echo "Nothing to commit, skipping"
+        echo "Nothing to commit, skipping commit"
       fi
 
-    # Force push temp branch to GitHub as main
+    # Push cleaned content to GitHub
     - git push -f github "$TEMP_BRANCH:$GITHUB_BRANCH"
-    - git push --tags github
-    - git checkout "$PUBLISH_BRANCH"
-    - git branch -D "$TEMP_BRANCH"
+
+    # Optional: push tags (remove if you don't want this)
+    # - git push --tags github
+
   rules:
-    - if: "$CI_COMMIT_BRANCH == $PUBLISH_BRANCH"
+    - if: '$CI_COMMIT_BRANCH == $PUBLISH_BRANCH'
       when: always
