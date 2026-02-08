@@ -1,0 +1,65 @@
+stages:
+  - mirror
+
+variables:
+  GIT_DEPTH: "0"
+  GIT_STRATEGY: fetch
+  GITHUB_BRANCH: "main"
+  PUBLISH_BRANCH: "publish"
+  TEMP_BRANCH: "publish-temp"
+
+mirror_clean_publish:
+  stage: mirror
+  resource_group: github-mirror   # prevents concurrent pushes racing
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+      - api_failure
+  script:
+    - set -euo pipefail
+
+    - git config --global user.email "qf3l3k@gmail.com"
+    - git config --global user.name "GitLab CI"
+
+    # Always start from clean working tree (important with shell executor)
+    - git reset --hard
+    - git clean -fdx
+
+    # Add GitHub remote without credentials (safer)
+    - git remote remove github || true
+    - git remote add github "https://github.com/${GITHUB_OWNER}/${CI_PROJECT_NAME}.git"
+
+    # Provide credentials safely
+    - git config --global credential.helper store
+    - printf "https://x-access-token:%s@github.com\n" "$GITHUB_OWNER_TOKEN" > ~/.git-credentials
+
+    # Create temp branch from publish branch (no dependency on local branch existing)
+    - git fetch origin "$PUBLISH_BRANCH"
+    - git checkout -B "$TEMP_BRANCH" "origin/$PUBLISH_BRANCH"
+
+    # Remove internal/private files
+    - |
+      for path in .gitlab-ci.yml internal_docs/ secrets/ ci-scripts/ config.yml config.yaml .env; do
+        rm -rf "$path" || true
+      done
+
+    # Commit only if changes exist
+    - |
+      if [ -n "$(git status --porcelain)" ]; then
+        git add -A
+        git commit -m "Clean publish branch for GitHub"
+      else
+        echo "Nothing to commit, skipping commit"
+      fi
+
+    # Push cleaned content to GitHub
+    - git push -f github "$TEMP_BRANCH:$GITHUB_BRANCH"
+
+    # Optional: push tags (remove if you don't want this)
+    # - git push --tags github
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $PUBLISH_BRANCH'
+      when: always
