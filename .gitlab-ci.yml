@@ -33,7 +33,7 @@ mirror_clean_publish:
 
     # Provide credentials safely
     - git config --global credential.helper store
-    - printf "https://x-access-token:%s@github.com\n" "$GITHUB_TOKEN" > ~/.git-credentials
+    - printf "https://x-access-token:%s@github.com\n" "$GITHUB_OWNER_TOKEN" > ~/.git-credentials
 
     # Create temp branch from publish branch (no dependency on local branch existing)
     - git fetch origin "$PUBLISH_BRANCH"
